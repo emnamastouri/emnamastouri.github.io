@@ -1,0 +1,5 @@
+document.querySelectorAll("form[data-form]").forEach(e=>{const n=e.querySelector(".form-status"),s=e.querySelector("button[type=submit]"),t=e.dataset;e.addEventListener("submit",async a=>{const i=new FormData(e);if(i.get("botcheck")==="on"){a.preventDefault();return}const c=Object.fromEntries(i),d=`${t.subject} ${c.name??""}`.trim();if(t.ready!=="yes"){a.preventDefault();const{message:o,name:r,email:u,botcheck:p,access_key:$,...b}=c,l=Object.entries(b).map(([y,f])=>`${y}: ${f}`).join(`
+`),m=`${o}
+
+${r} (${u})${l?`
+`+l:""}`;n.textContent=t.mailto||"",window.location.href=`mailto:${t.email}?subject=${encodeURIComponent(d)}&body=${encodeURIComponent(m)}`;return}a.preventDefault(),s.disabled=!0,s.textContent=t.sending||"…",n.textContent="",n.className="form-status";try{const o=await fetch(e.action,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({...c,subject:d})}),r=await o.json();if(!o.ok||!r.success)throw new Error("send failed");n.textContent=t.sent||"",n.classList.add("is-ok"),e.reset()}catch{n.textContent=t.error||"",n.classList.add("is-error")}finally{s.disabled=!1,s.textContent=t.send||""}})});

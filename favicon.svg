@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .bg{fill:#1E2430}.fg{fill:#FAF7F2}.dot{fill:#E58A5B}
+    @media (prefers-color-scheme:dark){.bg{fill:#EEE9DF}.fg{fill:#13161B}.dot{fill:#B1502A}}
+  </style>
+  <rect class="bg" width="64" height="64" rx="16"/>
+  <text class="fg" x="31" y="43" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="34" font-weight="700">E</text>
+  <circle class="dot" cx="47" cy="40" r="4.5"/>
+</svg>
